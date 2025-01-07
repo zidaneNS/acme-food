@@ -1,14 +1,27 @@
 import { sql } from "@vercel/postgres";
-import { DisplayCartType, FoodByCategory, FoodCategory, NoteType, UserType } from "./defintion";
+import { DisplayCartType, FoodByCategory, FoodCategory, FoodType, NoteType, UserType } from "./defintion";
 
-export async function fetchFoodsByCategory(category: FoodCategory): Promise<FoodByCategory[] | undefined> {
+export async function fetchFoodsByCategory(categories: FoodCategory[]): Promise<FoodByCategory[][] | undefined> {
     try {
-        const data = await sql<FoodByCategory>`SELECT id, name, price, img_url FROM foods WHERE category = ${category};`;
-        return data.rows;
+        const result = await Promise.all(categories.map(async (category) => {
+            const data = await sql<FoodByCategory>`SELECT id, name, price, img_url FROM foods WHERE category = ${category};`;
+            return data.rows;
+        }))
+
+        return result;
     } catch (err) {
         console.log(err);
     }
 
+}
+
+export async function fetchAllFoods(): Promise<FoodType[] | undefined> {
+    try {
+        const data = await sql<FoodType>`SELECT * FROM foods;`;
+        return data.rows;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 export async function fetchUserById(id: number): Promise<UserType | undefined> {

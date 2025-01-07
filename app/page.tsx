@@ -23,7 +23,7 @@ export default function Page() {
             alt="Food Photo"
             width={1200}
             height={800}
-            className="hidden md:block"
+            className="hidden md:block rounded-xl"
           />
           <Image
             src="/hero-mobile.jpg"

@@ -16,7 +16,7 @@ async function seedUsers() {
             createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );`;
     } catch (err) {
-        console.log('error create table users')
+        console.log(err, 'error create table users')
     }
 
     const insertedUsers = await Promise.all(
