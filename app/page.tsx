@@ -13,7 +13,7 @@ export default function Page() {
           <p className="text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, obcaecati!</p>
           <div className="flex flex-col items-center px-2 mt-4 gap-y-4">
             <button className="py-2 px-4 rounded-xl text-lg bg-blue-500 text-white w-full hover:bg-blue-400 transtition duration-300">Sign In</button>
-            <Link href="/home" className="py-2 px-4 rounded-xl text-lg w-full bg-slate-600 text-white hover:bg-slate-500 transtition duration-300 text-center">Continue as Guest</Link>
+            <Link href="/home?category=drink-food-dessert" className="py-2 px-4 rounded-xl text-lg w-full bg-slate-600 text-white hover:bg-slate-500 transtition duration-300 text-center">Continue as Guest</Link>
             
           </div>
         </div>

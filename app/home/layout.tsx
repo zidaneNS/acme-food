@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { ChevronDownIcon, Cog6ToothIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, Cog6ToothIcon, Bars3Icon, HomeIcon, PhoneIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import NavLink from "../ui/home/NavLink";
 
@@ -18,16 +18,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <NavLink />
                 </div>
                 <div 
-                    className="block md:hidden"
+                    className="block md:hidden z-10"
                     onMouseEnter={() => setIsOpenUserInfo(true)}
                     onMouseLeave={() => setIsOpenUserInfo(false)}
                 >
                     <Bars3Icon className="w-6"/>
                     {isOpenUserInfo && (
-                        <div className="h-screen w-64 bg-white border border-slate-400 absolute right-0 top-0 flex flex-col gap-y-4 py-4 px-6">
+                        <div className="h-screen w-64 bg-white border border-slate-400 absolute right-0 top-0 flex flex-col justify-between gap-y-4 py-4 px-6">
                             <div className="w-full flex flex-col gap-y-3">
-                                <p className="py-2 px-4 bg-yellow-400 rounded-xl w-full text-center">user name</p>
-                                <p className="py-2 px-4 bg-yellow-400 rounded-xl w-full text-center">email</p>
+                                <Link href="/home?category=drink-food-dessert" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
+                                    <HomeIcon className="w-5" />
+                                    Home
+                                </Link>
+                                <Link href="/home/about" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
+                                    <BriefcaseIcon className="w-5" />
+                                    About
+                                </Link>
+                                <Link href="/home/contact" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
+                                    <PhoneIcon className="w-5" />
+                                    Contact
+                                </Link>
+                            </div>
+                            <div className="w-full flex flex-col gap-y-3">
+                                <p className="py-2 px-4 bg-yellow-500 rounded-xl w-full text-center">user name</p>
+                                <p className="py-2 px-4 bg-yellow-500 rounded-xl w-full text-center">email</p>
                                 <span className="w-full border border-slate-200"></span>
                                 <Link href="/user/dashboard" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
                                     <Cog6ToothIcon className="w-5" />
@@ -43,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     )}
                 </div>
                 <div 
-                    className="hidden md:flex items-center gap-x-2 relative hover:cursor-pointer"
+                    className="hidden md:flex items-center gap-x-2 relative hover:cursor-pointer z-10"
                     onMouseEnter={() => setIsOpenUserInfo(true)}
                     onMouseLeave={() => setIsOpenUserInfo(false)}
                 >
