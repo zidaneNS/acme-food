@@ -1,11 +1,12 @@
 // import { sql } from "@vercel/postgres";
 // import { UserType } from "../lib/defintion";
-import { fetchFoodsByCategory } from "../lib/data";
+import { getUser } from "../lib/dal";
+// import { fetchFoodsByCategory, fetchUserByEmail } from "../lib/data";
 
 export async function GET() {
     try {
 
-        const result = await fetchFoodsByCategory(['drink', 'food', 'dessert']);
+        const result = await getUser();
 
         return Response.json({ result });
     } catch (error) {

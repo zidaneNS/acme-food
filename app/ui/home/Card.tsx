@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import { FoodByCategory, FoodType } from "@/app/lib/defintion";
+import { FoodByCategory } from "@/app/lib/defintion";
 
-export default function Card({name, price, img_url, id}: FoodByCategory) {
+export default function Card({name, price, img_url}: FoodByCategory) {
     return (
         <div className="flex flex-col py-2 px-4 border border-orange-500 rounded-xl gap-y-2">
             <h1 className="text-xl font-bold">{name}</h1>

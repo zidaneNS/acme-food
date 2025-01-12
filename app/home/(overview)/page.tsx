@@ -2,6 +2,7 @@ import { fetchFoodsByCategory } from "@/app/lib/data";
 import Card from "@/app/ui/home/Card";
 import { Fragment } from "react";
 import NavCategory from "@/app/ui/home/NavCategory";
+import Search from "@/app/ui/home/Search";
 
 export default async function Page(props: { searchParams?: Promise<{ category: string }>}) {
     const searchParams = await props.searchParams;
@@ -15,8 +16,8 @@ export default async function Page(props: { searchParams?: Promise<{ category: s
             <div className="border-r-2 border-orange-500/20 hidden md:flex flex-col gap-y-4 px-6 py-6 text-orange-500 items-start">
                 <NavCategory />
             </div>
-            <div className="flex relative flex-col p-12 gap-y-4 flex-grow">
-                <div className="w-full sticky top-2 bg-yellow-500 py-4 px-6 rounded-xl">Input Search</div>
+            <div className="flex relative flex-col p-12 gap-y-4 h-full">
+                <Search />
                 <div className="md:hidden flex text-orange-500 gap-x-2 font-normal">
                     <NavCategory />
                 </div>

@@ -11,7 +11,7 @@ export default function NavCategory() {
     const [isFood, setIsFood] = useState<boolean>(true);
     const [isDessert, setIsDessert] = useState<boolean>(true);
 
-    const handleCategory = (category: string, checked: Boolean, changer: Dispatch<SetStateAction<boolean>>) => {
+    const handleCategory = (category: string, checked: boolean, changer: Dispatch<SetStateAction<boolean>>) => {
         const params = new URLSearchParams(searchParams);
         let query = category;
         if (isDrink) query += '-drink';

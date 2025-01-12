@@ -1,5 +1,27 @@
 import { sql } from "@vercel/postgres";
 import { DisplayCartType, FoodByCategory, FoodCategory, FoodType, NoteType, UserType } from "./defintion";
+import { JWTPayload, SignJWT, jwtVerify } from "jose";
+
+const secretKey = process.env.SESSION_SECRET;
+const encodedKey = new TextEncoder().encode(secretKey);
+
+export async function encrypt(payload: JWTPayload) {
+    return new SignJWT(payload)
+        .setProtectedHeader({ alg: 'HS256'})
+        .setIssuedAt()
+        .setExpirationTime('7d')
+        .sign(encodedKey);
+}
+
+export async function decrypt(session: string | undefined = '') {
+    try {
+        const { payload } = await jwtVerify(session, encodedKey, { algorithms: ['HS256'] });
+        
+        return payload;
+    } catch (err) {
+        console.log('Failed to veryfy session', err);
+    }
+}
 
 export async function fetchFoodsByCategory(categories: FoodCategory[] | string[]): Promise<FoodByCategory[][] | undefined> {
     try {
@@ -28,6 +50,16 @@ export async function fetchUserById(id: number): Promise<UserType | undefined> {
     try {
         const data = await sql<UserType>`SELECT * FROM users WHERE id = ${id};`;
     
+        return data.rows[0];
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function fetchUserByEmail(email: string): Promise<UserType | undefined> {
+    try {
+        const data = await sql<UserType>`SELECT * FROM users WHERE email = ${email};`;
+
         return data.rows[0];
     } catch (err) {
         console.log(err);

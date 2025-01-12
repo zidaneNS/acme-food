@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
+import HeroSkeletonDesktop from "./ui/HeroSkeletonDesktop";
+import HeroSkeletonMobile from "./ui/HeroSkeletonMobile";
 
 export default function Page() {
   return (
@@ -12,26 +15,30 @@ export default function Page() {
         <div className="bg-yellow-500/5 rounded-xl py-4 px-4 flex flex-col justify-between">
           <p className="text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, obcaecati!</p>
           <div className="flex flex-col items-center px-2 mt-4 gap-y-4">
-            <button className="py-2 px-4 rounded-xl text-lg bg-blue-500 text-white w-full hover:bg-blue-400 transtition duration-300">Sign In</button>
+            <Link href="/auth/login" className="py-2 px-4 rounded-xl text-lg bg-blue-500 text-white w-full hover:bg-blue-400 transtition duration-300 text-center">Sign In</Link>
             <Link href="/home?category=drink-food-dessert" className="py-2 px-4 rounded-xl text-lg w-full bg-slate-600 text-white hover:bg-slate-500 transtition duration-300 text-center">Continue as Guest</Link>
             
           </div>
         </div>
         <div className="flex items-center">
-          <Image
-            src="/hero-desktop.jpg"
-            alt="Food Photo"
-            width={1200}
-            height={800}
-            className="hidden md:block rounded-xl"
-          />
-          <Image
-            src="/hero-mobile.jpg"
-            alt="Food Photo"
-            width={640}
-            height={427}
-            className="block md:hidden"
-          />
+          <Suspense fallback={<HeroSkeletonDesktop />}>
+            <Image
+              src="/hero-desktop.jpg"
+              alt="Food Photo"
+              width={1200}
+              height={800}
+              className="hidden md:block rounded-xl"
+            />
+          </Suspense>
+          <Suspense fallback={<HeroSkeletonMobile />}>
+            <Image
+              src="/hero-mobile.jpg"
+              alt="Food Photo"
+              width={640}
+              height={427}
+              className="block md:hidden rounded-xl"
+            />
+          </Suspense>
         </div>
       </section>
     </main>

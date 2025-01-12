@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type FoodCategory = 'dessert' | 'food' | 'drink';
 
 export type RolesType = 'ADMIN' | 'USER';
@@ -55,3 +57,16 @@ export type DisplayCartType = {
     amount: number,
     totalPrice: number
 }
+
+export const LoginFormSchema = z.object({
+    email: z.string({ invalid_type_error: 'Email field cannot empty'}).email({ message: 'Please enter valid email' }).trim(),
+    password: z.string({ invalid_type_error: 'Password field cannot empty' })
+});
+
+export type LoginFormState = {
+    errors?: {
+        email?: string[],
+        password?: string[]
+    },
+    message?: string
+} | undefined;

@@ -36,7 +36,7 @@ export const foods: FoodType[] = [
         name: 'Fried Rice',
         category: 'food',
         price: 10000,
-        img_url: '',
+        img_url: '/img/fried-rice.jpg',
         createdAt: ''
     },
     {
@@ -44,7 +44,7 @@ export const foods: FoodType[] = [
         name: 'Pizza',
         category: 'food',
         price: 15000,
-        img_url: '',
+        img_url: '/img/pizza.jpg',
         createdAt: ''
     },
     {
@@ -52,7 +52,7 @@ export const foods: FoodType[] = [
         name: 'Ice Tea',
         category: 'drink',
         price: 5000,
-        img_url: '',
+        img_url: '/img/ice-tea.jpg',
         createdAt: ''
     }
 ];
