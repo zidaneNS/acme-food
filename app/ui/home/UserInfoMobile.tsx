@@ -20,7 +20,7 @@ export default function UserInfoMobile({ setIsOpenUserInfo, isOpenUserInfo }: { 
                     <UserCircleIcon className="w-20 text-white bg-slate-700 rounded-full" />
                     <p className="py-2 px-4 border-b border-slate-400 w-full text-center">user name</p>
                     <p className="py-2 px-4 border-b border-slate-400 w-full text-center">email</p>
-                    <Link href="/user/dashboard" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
+                    <Link href="/home/dashboard" className="py-2 px-4 bg-slate-500 text-white hover:bg-slate-400 transition duration-300 rounded-xl w-full text-center flex gap-x-2 items-center justify-center">
                         <Cog6ToothIcon className="w-5" />
                         Dashboard
                     </Link>

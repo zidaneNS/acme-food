@@ -2,7 +2,8 @@ import 'server-only';
 
 import { cache } from 'react';
 import { cookies } from 'next/headers';
-import { decrypt, fetchUserById } from './data';
+import { decrypt } from './data';
+import { sql } from '@vercel/postgres';
 // import { redirect } from 'next/navigation';
 
 export const verifySession = cache(async () => {
@@ -13,7 +14,7 @@ export const verifySession = cache(async () => {
     //     redirect('/auth/login');
     // }
 
-    return { isAuth: true, userId: session?.userId as number }
+    return { isAuth: true, userId: session?.userId as string }
 })
 
 export const getUser = cache(async () => {
@@ -21,15 +22,9 @@ export const getUser = cache(async () => {
     if (!session) return null;
     
     try {
-        const data = await fetchUserById(session.userId);
-        const user = {
-            name: data?.name,
-            email: data?.email,
-            roles: data?.roles,
-            img_url: data?.img_url
-        }
+        const data = await sql`SELECT name, email, roles, img_url FROM users WHERE id = ${session.userId};`;
 
-        return user;
+        return data.rows[0];
     } catch (err) {
         console.log('failed to fetch user :', err);
     }

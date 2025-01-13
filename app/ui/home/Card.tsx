@@ -4,7 +4,7 @@ import { FoodByCategory } from "@/app/lib/defintion";
 
 export default function Card({name, price, img_url}: FoodByCategory) {
     return (
-        <div className="flex flex-col py-2 px-4 border border-orange-500 rounded-xl gap-y-2">
+        <div className="flex flex-col py-2 px-4 border bg-white border-orange-500 rounded-xl gap-y-2">
             <h1 className="text-xl font-bold">{name}</h1>
             <p className="text-slate-500 text-lg">IDR.{price}</p>
             <span className="border border-slate-700"></span>
