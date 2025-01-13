@@ -1,12 +1,12 @@
 'use server';
 
 import { redirect } from "next/navigation";
-import { LoginFormSchema, UserType } from "../defintion";
+import { LoginFormSchema, LoginFormState, UserType } from "../defintion";
 import { fetchUserByEmail } from "../data";
 import bcrypt from "bcrypt";
 import { createSession, deleteSession } from "./session";
 
-export async function login(formData: FormData) {
+export async function login(prevState: LoginFormState, formData: FormData) {
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
         password: formData.get('password')

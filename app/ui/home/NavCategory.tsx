@@ -18,11 +18,19 @@ export default function NavCategory() {
         if (isFood) query += '-food';
         if (isDessert) query += '-dessert';
         if (!checked) {
-            category.length > 0 ? params.set('category', query) : params.delete('category');
+            if (category.length > 0) {
+                params.set('category', query);
+            } else {
+                params.delete('category');
+            }
             replace(`${pathname}?${params.toString()}`);
         } else {
             const categories = searchParams.get('category')?.split('-').filter(item => item != category).join('-') || '';
-            categories.length > 0 ? params.set('category', categories) : params.delete('category');
+            if (categories.length > 0) {
+                params.set('category', categories);
+            } else {
+                params.delete('category');
+            }
             replace(`${pathname}?${params.toString()}`);
         }
         changer(prev => !prev);

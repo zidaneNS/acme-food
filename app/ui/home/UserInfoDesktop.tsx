@@ -1,8 +1,9 @@
 import { ChevronDownIcon, Cog6ToothIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import LogoutButton from "./LogoutButton";
 
-export default function UserInfoDesktop({ setIsOpenUserInfo, isOpenUserInfo, action }: { setIsOpenUserInfo: Dispatch<SetStateAction<boolean>>, isOpenUserInfo: boolean, action: () => void }) {
+export default function UserInfoDesktop({ setIsOpenUserInfo, isOpenUserInfo }: { setIsOpenUserInfo: Dispatch<SetStateAction<boolean>>, isOpenUserInfo: boolean }) {
   return (
     <div 
         className="hidden md:flex items-center gap-x-2 relative hover:cursor-pointer z-10"
@@ -26,9 +27,7 @@ export default function UserInfoDesktop({ setIsOpenUserInfo, isOpenUserInfo, act
                 <span className="w-full border border-slate-200"></span>
                 <div className="w-full flex flex-col gap-y-3">
                     <Link href="/auth/login" className="py-2 px-4 bg-blue-700 text-white hover:bg-blue-600 transition duration-300 rounded-xl w-full text-center">Sign In</Link>
-                    <form action={action} className="w-full">
-                        <button type="submit" className="py-2 px-4 bg-blue-700 text-white hover:bg-blue-600 transition duration-300 rounded-xl w-full">Logout</button>
-                    </form>
+                    <LogoutButton />
                 </div>
             </div>
         )}

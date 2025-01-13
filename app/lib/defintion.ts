@@ -64,9 +64,18 @@ export const LoginFormSchema = z.object({
 });
 
 export type LoginFormState = {
-    errors?: {
-        email?: string[],
-        password?: string[]
-    },
-    message?: string
-} | undefined;
+    errors: {
+        email?: string[] | undefined;
+        password?: string[] | undefined;
+    };
+} | {
+    errors: {
+        email: string;
+        password: undefined;
+    };
+} | {
+    errors: {
+        email: undefined;
+        password: string;
+    };
+} | undefined

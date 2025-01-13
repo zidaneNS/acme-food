@@ -1,14 +1,12 @@
 'use client';
 
-import { useActionState, useState } from "react"
+import { useState } from "react"
 import NavLink from "./NavLink";
-import { logout } from "@/app/lib/action/auth";
 import UserInfoDesktop from "./UserInfoDesktop";
 import UserInfoMobile from "./UserInfoMobile";
 
 export default function Navbar() {
     const [isOpenUserInfo, setIsOpenUserInfo] = useState(false);
-    const [state, action] = useActionState(logout, undefined);
 
     return (
         <nav className="flex justify-between bg-gradient-to-r from-orange-500 to-yellow-500 py-4 px-4 text-white items-center">
@@ -21,12 +19,12 @@ export default function Navbar() {
             <UserInfoMobile 
                 setIsOpenUserInfo={setIsOpenUserInfo}
                 isOpenUserInfo={isOpenUserInfo}
-                action={action}
+                // action={action}
             />
             <UserInfoDesktop 
                 setIsOpenUserInfo={setIsOpenUserInfo} 
                 isOpenUserInfo={isOpenUserInfo}
-                action={action}
+                // action={action}
             />
         </nav>
     )

@@ -3,8 +3,9 @@ import { Cog6ToothIcon, Bars3Icon, HomeIcon, PhoneIcon, BriefcaseIcon, UserCircl
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
+import LogoutButton from "./LogoutButton";
 
-export default function UserInfoMobile({ setIsOpenUserInfo, isOpenUserInfo, action }: { setIsOpenUserInfo: Dispatch<SetStateAction<boolean>>, isOpenUserInfo: boolean, action: () => void }) {
+export default function UserInfoMobile({ setIsOpenUserInfo, isOpenUserInfo }: { setIsOpenUserInfo: Dispatch<SetStateAction<boolean>>, isOpenUserInfo: boolean }) {
   const pathname = usePathname();
   return (
     <div 
@@ -53,9 +54,7 @@ export default function UserInfoMobile({ setIsOpenUserInfo, isOpenUserInfo, acti
                 <span className="w-full border border-slate-200"></span>
                 <div className="w-full flex flex-col gap-y-3">
                     <Link href="/auth/login" className="py-2 px-4 bg-blue-700 text-white hover:bg-blue-600 transition duration-300 rounded-xl w-full text-center">Sign In</Link>
-                    <form action={action} className="w-full">
-                        <button type="submit" className="py-2 px-4 bg-blue-700 text-white hover:bg-blue-600 transition duration-300 rounded-xl w-full">Logout</button>
-                    </form>
+                    <LogoutButton />
                 </div>
             </div>
         )}

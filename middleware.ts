@@ -18,9 +18,9 @@ export default async function middleware(request: NextRequest) {
     const cookie = (await cookies()).get('session')?.value;
     const session = await decrypt(cookie);
 
-    if (isProtected && !session?.userId) return NextResponse.redirect(new URL('/auth/login', request.url));
+    // if (isProtected && !session?.userId) return NextResponse.redirect(new URL('/auth/login', request.url));
 
-    // if(isPublic && session?.userId && !request.nextUrl.pathname.startsWith('/dashboard')) return NextResponse.redirect(new URL('/dashboard', request.url));
+    // if(isPublic && session?.userId && !request.nextUrl.pathname.startsWith('/home')) return NextResponse.redirect(new URL('/home?category=food-drink-dessert', request.url));
 
     return NextResponse.next();
 }
