@@ -1,4 +1,5 @@
-import { ChevronDownIcon, TrashIcon, UserCircleIcon, CheckCircleIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, TrashIcon, UserCircleIcon, CheckCircleIcon, EyeIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function Page() {
     return (
@@ -10,6 +11,12 @@ export default function Page() {
                 <div className="rounded-lg py-4 px-16 flex flex-col flex-grow gap-y-3 justify-evenly bg-white">
                     <p className="border-b border-slate-400 text-sm font-bold text-center">Username</p>
                     <p className="border-b border-slate-400 text-sm font-bold text-center">Email</p>
+                    <div className="flex justify-center items-center">
+                        <Link href="/" className="p-2 flex gap-x-2 w-fit text-sm items-center hover:border-b text-slate-700 border-slate-700">
+                            Edit
+                            <PencilSquareIcon className="w-6" />
+                        </Link>
+                    </div>
                 </div>
             </div>
             <div className="w-full flex justify-center">

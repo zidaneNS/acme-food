@@ -4,8 +4,9 @@ import { useState } from "react"
 import NavLink from "./NavLink";
 import UserInfoDesktop from "./UserInfoDesktop";
 import UserInfoMobile from "./UserInfoMobile";
+import { UserDisplayType } from "@/app/lib/defintion";
 
-export default function Navbar() {
+export default function Navbar({ user }: { user: UserDisplayType | null | undefined }) {
     const [isOpenUserInfo, setIsOpenUserInfo] = useState(false);
 
     return (
@@ -19,12 +20,12 @@ export default function Navbar() {
             <UserInfoMobile 
                 setIsOpenUserInfo={setIsOpenUserInfo}
                 isOpenUserInfo={isOpenUserInfo}
-                // action={action}
+                user={user}
             />
             <UserInfoDesktop 
                 setIsOpenUserInfo={setIsOpenUserInfo} 
                 isOpenUserInfo={isOpenUserInfo}
-                // action={action}
+                user={user}
             />
         </nav>
     )

@@ -45,7 +45,7 @@ export async function login(prevState: LoginFormState, formData: FormData) {
 
     await createSession(foundUser.id.toString());
 
-    redirect('/home?categories=food-drink-dessert');
+    redirect('/home?category=food-drink-dessert');
 }
 
 export async function logout() {

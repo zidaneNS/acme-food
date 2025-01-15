@@ -1,16 +1,19 @@
-import { fetchFoodsByCategory } from "@/app/lib/data";
+import { fetchFoodsByCategory, fetchFoodsByCategorySearch, fetchSetOfFoods } from "@/app/lib/data";
 import Card from "@/app/ui/home/Card";
 import { Fragment } from "react";
 import NavCategory from "@/app/ui/home/NavCategory";
 import Search from "@/app/ui/home/Search";
 import CartButton from "@/app/ui/home/CartButton";
+import { getUser } from "@/app/lib/dal";
 
-export default async function Page(props: { searchParams?: Promise<{ category: string }>}) {
+export default async function Page(props: { searchParams?: Promise<{ category: string, search: string }>}) {
     const searchParams = await props.searchParams;
     const category = searchParams?.category || '';
     const categories = category.split('-');
-    console.log(categories, 'server, type ', typeof categories);
-    const data = await fetchFoodsByCategory(categories);
+    const search = searchParams?.search || '';
+    const data = search.length > 0 ? await fetchFoodsByCategorySearch(categories, search) : await fetchFoodsByCategory(categories);
+    const user = await getUser();
+    const setOfFoods = await fetchSetOfFoods(user?.id) || [];
     
     return (
         <main className="flex flex-col md:flex-row h-full">
@@ -27,18 +30,20 @@ export default async function Page(props: { searchParams?: Promise<{ category: s
                     {data?.map((items, idx) => (
                         <Fragment key={idx}>
                             {items.map(item => (
-                                <Card 
-                                    name={item.name}
-                                    price={item.price}
-                                    img_url={item.img_url}
-                                    id={item.id}
-                                    key={item.id}
+                                <Card
+                                    key={item.id} 
+                                    food={item}
+                                    alreadyInCart={setOfFoods?.includes(item.id)}
                                 />
                             ))}
                         </Fragment>
                     ))}
                 </div>
-                <CartButton />
+                {user?.id && (
+                    <CartButton 
+                        userId={user.id}
+                    />
+                )}
             </div>
         </main>
     )

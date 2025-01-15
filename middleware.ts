@@ -11,12 +11,12 @@ export default async function middleware(request: NextRequest) {
         await updateSession();
     }
 
-    const path = request.nextUrl.pathname;
-    const isPublic = publicRoutes.includes(path);
-    const isProtected = protectedRoutes.includes(path);
+    // const path = request.nextUrl.pathname;
+    // const isPublic = publicRoutes.includes(path);
+    // const isProtected = protectedRoutes.includes(path);
 
-    const cookie = (await cookies()).get('session')?.value;
-    const session = await decrypt(cookie);
+    // const cookie = (await cookies()).get('session')?.value;
+    // const session = await decrypt(cookie);
 
     // if (isProtected && !session?.userId) return NextResponse.redirect(new URL('/auth/login', request.url));
 

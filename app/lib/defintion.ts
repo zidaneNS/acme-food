@@ -7,7 +7,7 @@ export type RolesType = 'ADMIN' | 'USER';
 export type StatusType = 'PENDING' | 'SUCCESS';
 
 interface ColumnType {
-    id: number,
+    id: number | string,
     createdAt: string
 }
 
@@ -27,24 +27,24 @@ export interface UserType extends ColumnType {
 }
 
 export interface CartType extends ColumnType {
-    user_id: number,
-    food_id: number,
+    user_id: number | string,
+    food_id: number | string,
     amount: number,
 }
 
 export interface NoteType extends ColumnType {
     status: StatusType,
     totalPrice: number,
-    user_id: number
+    user_id: number | string
 }
 
 export type Note_Cart = {
     cart_id: number,
-    note_id: number
+    note_id: number | string
 }
 
 export type FoodByCategory = {
-    id: number,
+    id: number | string,
     name: string,
     price: number,
     img_url: string
@@ -54,8 +54,15 @@ export type DisplayCartType = {
     name: string,
     price: number,
     img_url: string,
-    amount: number,
-    totalPrice: number
+    amount: number
+}
+
+export type UserDisplayType = {
+    name: string,
+    roles: RolesType,
+    img_url: string,
+    id: number | string,
+    email: string
 }
 
 export const LoginFormSchema = z.object({
