@@ -1,17 +1,10 @@
 export default function LoadingButton() {
     return (
-        /* From Uiverse.io by mahendrameghwal */ 
-        <div className="w-full gap-x-2 flex justify-center items-center">
-            <div
-                className="w-5 bg-[#d991c2] h-5 rounded-full animate-bounce"
-            ></div>
-            <div
-                className="w-5 h-5 bg-[#9869b8] rounded-full animate-bounce"
-            ></div>
-            <div
-                className="w-5 h-5 bg-[#6756cc] rounded-full animate-bounce"
-            ></div>
-        </div>
-
+    /* From Uiverse.io by Javierrocadev */ 
+    <div className="flex w-full justify-center flex-row gap-2">
+        <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce"></div>
+        <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.3s]"></div>
+        <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:-.5s]"></div>
+    </div>
     )
 }

@@ -8,7 +8,7 @@ export type StatusType = 'PENDING' | 'SUCCESS';
 
 interface ColumnType {
     id: number | string,
-    createdAt: string
+    createdat: Date
 }
 
 export interface FoodType extends ColumnType {
@@ -34,7 +34,7 @@ export interface CartType extends ColumnType {
 
 export interface NoteType extends ColumnType {
     status: StatusType,
-    totalPrice: number,
+    totalprice: number,
     user_id: number | string
 }
 
@@ -51,6 +51,7 @@ export type FoodByCategory = {
 }
 
 export type DisplayCartType = {
+    id: string | number,
     name: string,
     price: number,
     img_url: string,

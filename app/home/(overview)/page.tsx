@@ -1,10 +1,11 @@
 import { fetchFoodsByCategory, fetchFoodsByCategorySearch, fetchSetOfFoods } from "@/app/lib/data";
 import Card from "@/app/ui/home/Card";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import NavCategory from "@/app/ui/home/NavCategory";
 import Search from "@/app/ui/home/Search";
 import CartButton from "@/app/ui/home/CartButton";
 import { getUser } from "@/app/lib/dal";
+import CardSkeleton from "@/app/ui/home/CardSkeleton";
 
 export default async function Page(props: { searchParams?: Promise<{ category: string, search: string }>}) {
     const searchParams = await props.searchParams;
@@ -27,22 +28,22 @@ export default async function Page(props: { searchParams?: Promise<{ category: s
                 </div>
                 <span className="border border-orange-500"></span>
                 <div className="w-ful overflow-y-auto flex flex-col gap-y-4 md:grid grid-cols-3 md:gap-2">
-                    {data?.map((items, idx) => (
-                        <Fragment key={idx}>
-                            {items.map(item => (
-                                <Card
-                                    key={item.id} 
-                                    food={item}
-                                    alreadyInCart={setOfFoods?.includes(item.id)}
-                                />
-                            ))}
-                        </Fragment>
-                    ))}
+                    <Suspense fallback={<CardSkeleton />} >
+                        {data?.map((items, idx) => (
+                            <Fragment key={idx}>
+                                {items.map(item => (
+                                    <Card
+                                        key={item.id} 
+                                        food={item}
+                                        alreadyInCart={setOfFoods?.includes(item.id)}
+                                    />
+                                ))}
+                            </Fragment>
+                        ))}                    
+                    </Suspense>
                 </div>
                 {user?.id && (
-                    <CartButton 
-                        userId={user.id}
-                    />
+                    <CartButton />
                 )}
             </div>
         </main>

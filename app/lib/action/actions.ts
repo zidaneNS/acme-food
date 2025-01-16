@@ -56,3 +56,22 @@ export async function removeFromCart(foodId: number | string): Promise<boolean> 
         return false;
     }
 }
+
+export async function updateCart(cartId: string | number, amount: string | number) {
+    try {
+        await sql`UPDATE carts SET amount = ${amount} WHERE id = ${cartId};`;
+        revalidatePath('/home/cart');
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function deleteCart(cartId: string | number): Promise<void | undefined> {
+    try {
+        await sql`DELETE FROM note_cart WHERE cart_id = ${cartId};`;
+        await sql`DELETE FROM carts WHERE id = ${cartId};`;
+        revalidatePath('/home/cart');
+    } catch (err) {
+        console.error(err);
+    }
+}
