@@ -17,7 +17,8 @@ export default function Cart({ id, name, price, img_url, amount }: DisplayCartTy
 
     const deleteCartWithId = deleteCart.bind(null, id);
     const [state, action, pending] = useActionState(deleteCartWithId, undefined);
-    console.log(state);
+    console.log(state); //eslint need
+
     return (
         <div className="bg-white w-full h-fit px-3 py-2 rounded-lg border-2 border-orange-500 flex flex-col md:flex-row justify-none md:justify-between gap-y-3">
             <div className="flex flex-col md:flex-row gap-y-3 gap-x-2 items-center">

@@ -1,5 +1,5 @@
 import { getUser } from "@/app/lib/dal";
-import { fetchNotesById } from "@/app/lib/data";
+import { fetchNotesByUserId } from "@/app/lib/data";
 import ViewNotes from "@/app/ui/dashboard/ViewNotes";
 import { UserCircleIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -10,7 +10,7 @@ export default async function Page() {
     const user = await getUser();
     if (!user) return redirect('/home?category=food-drink-dessert');
 
-    const noteData = await fetchNotesById(user.id) || [];
+    const noteData = await fetchNotesByUserId(user.id) || [];
 
     return (
         <main className="flex flex-col p-8 md:p-20 h-[150%] gap-y-4 items-center">

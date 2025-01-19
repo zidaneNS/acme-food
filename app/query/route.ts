@@ -1,12 +1,12 @@
 // import { sql } from "@vercel/postgres";
 // import { UserType } from "../lib/defintion";
 // import { getUser } from "../lib/dal";
-import { fetchDisplayCart } from "../lib/data";
+import { fetchNoteById } from "../lib/data";
 
 export async function GET() {
     try {
 
-        const result = await fetchDisplayCart(2);
+        const result = await fetchNoteById(1);
 
         return Response.json({ result });
     } catch (error) {

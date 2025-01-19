@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { DisplayCartType, FoodByCategory, FoodCategory, FoodType, NoteType, UserType } from "./defintion";
+import { DisplayCartType, FoodByCategory, FoodCategory, FoodType, NoteDisplayType, NoteType, UserType } from "./defintion";
 import { JWTPayload, SignJWT, jwtVerify } from "jose";
 
 const secretKey = process.env.SESSION_SECRET;
@@ -92,9 +92,9 @@ export async function fetchDisplayCart(userId: number | string): Promise<Display
     }
 }
 
-export async function fetchNotesById(id: number | string): Promise<NoteType[] | undefined> {
+export async function fetchNotesByUserId(userId: number | string): Promise<NoteType[] | undefined> {
     try {
-        const data = await sql<NoteType>`SELECT * FROM notes WHERE user_id = ${id}`;
+        const data = await sql<NoteType>`SELECT * FROM notes WHERE user_id = ${userId}`;
 
         return data.rows;
     } catch (err) {
@@ -110,6 +110,16 @@ export async function fetchCartsByNote(id: number | string): Promise<DisplayCart
             return { ...item, totalPrice: item.price * item.amount }
         })
         return result;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function fetchNoteById (id: number | string): Promise<NoteDisplayType | undefined> {
+    try {
+        const data = await sql<NoteDisplayType>`SELECT status, totalprice, createdat, user_id FROM notes WHERE id = ${id}`;
+
+        return data.rows[0];
     } catch (err) {
         console.error(err);
     }

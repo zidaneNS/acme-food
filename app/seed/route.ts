@@ -75,7 +75,7 @@ async function seedNotes() {
     );`;
 
     const insertedNotes = await Promise.all(
-        notes.map(async (note) => client.sql`INSERT INTO notes (status, totalPrice, user_id) VALUES (${note.status}, ${note.totalPrice}, ${note.user_id});`)
+        notes.map(async (note) => client.sql`INSERT INTO notes (status, totalprice, user_id) VALUES (${note.status}, ${note.totalprice}, ${note.user_id});`)
     );
 
     return insertedNotes;

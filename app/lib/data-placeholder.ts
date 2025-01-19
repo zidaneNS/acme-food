@@ -8,7 +8,7 @@ export const users: UserType[] = [
         password: 'password',
         roles: 'USER',
         img_url: '',
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const users: UserType[] = [
         password: 'password',
         roles: 'USER',
         img_url: '',
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 3,
@@ -26,7 +26,7 @@ export const users: UserType[] = [
         password: 'password',
         roles: 'ADMIN',
         img_url: '',
-        createdAt: ''
+        createdat: new Date()
     },
 ];
 
@@ -37,7 +37,7 @@ export const foods: FoodType[] = [
         category: 'food',
         price: 10000,
         img_url: '/img/fried-rice.jpg',
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 2,
@@ -45,7 +45,7 @@ export const foods: FoodType[] = [
         category: 'food',
         price: 15000,
         img_url: '/img/pizza.jpg',
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 3,
@@ -53,7 +53,7 @@ export const foods: FoodType[] = [
         category: 'drink',
         price: 5000,
         img_url: '/img/ice-tea.jpg',
-        createdAt: ''
+        createdat: new Date()
     }
 ];
 
@@ -63,28 +63,28 @@ export const carts: CartType[] = [
         food_id: 1,
         user_id: 1,
         amount: 2,
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 2,
         food_id: 2,
         user_id: 1,
         amount: 2,
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 3,
         food_id: 2,
         user_id: 2,
         amount: 1,
-        createdAt: ''
+        createdat: new Date()
     },
     {
         id: 4,
         food_id: 3,
         user_id: 2,
         amount: 2,
-        createdAt: ''
+        createdat: new Date()
     }
 ];
 
@@ -92,15 +92,15 @@ export const notes: NoteType[] = [
     {
         id: 1,
         status: 'SUCCESS',
-        totalPrice: 50000,
-        createdAt: '',
+        totalprice: 50000,
+        createdat: new Date(),
         user_id: 1
     },
     {
         id: 2,
         status: 'PENDING',
-        totalPrice: 25000,
-        createdAt: '',
+        totalprice: 25000,
+        createdat: new Date(),
         user_id: 2
     }
 ];

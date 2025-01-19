@@ -1,6 +1,7 @@
 import { NoteType } from "@/app/lib/defintion"
 import { TrashIcon, CheckCircleIcon, EyeIcon, XCircleIcon } from "@heroicons/react/24/outline"
 import { format } from "date-fns";
+import Link from "next/link";
 
 export default function Note({ note }: { note: NoteType }) {
     return (
@@ -28,7 +29,9 @@ export default function Note({ note }: { note: NoteType }) {
                             Pending
                         </span>
                     )}
-                    <EyeIcon className="w-6 cursor-pointer" />
+                    <Link href={`/home/note/${note.id}`}>
+                        <EyeIcon className="w-6 cursor-pointer hover:w-10 ease-in-out duration-200 rounded-xl" />
+                    </Link>
                 </div>
             </div>
         </div>

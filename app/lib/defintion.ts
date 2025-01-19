@@ -66,6 +66,13 @@ export type UserDisplayType = {
     email: string
 }
 
+export type NoteDisplayType = {
+    status: StatusType,
+    totalprice: number,
+    createdat: Date,
+    user_id: string | number
+}
+
 export const LoginFormSchema = z.object({
     email: z.string({ invalid_type_error: 'Email field cannot empty'}).email({ message: 'Please enter valid email' }).trim(),
     password: z.string({ invalid_type_error: 'Password field cannot empty' })
