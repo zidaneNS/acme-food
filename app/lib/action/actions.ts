@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { getUser } from "../dal";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
+import { fetchCartsByNote } from "../data";
 
 export async function addToCart(foodId: number | string): Promise<boolean> {
     const user = await getUser();
@@ -74,4 +75,17 @@ export async function deleteCart(cartId: string | number): Promise<void | undefi
     } catch (err) {
         console.error(err);
     }
+}
+
+export async function updateNote(noteId: string | number): Promise<boolean> {
+    try {
+        const item = await fetchCartsByNote(noteId) || [];
+        const totalPrice = item.map(item => item.totalprice).reduce((prev, curr) => prev += curr, 0);
+        await sql`UPDATE notes SET totalprice = ${totalPrice}, status = 'SUCCESS' WHERE id = ${noteId};`;
+        revalidatePath('/home/cart');
+        return true;
+    } catch (err) {
+        console.error(err);
+    }
+    return false;
 }

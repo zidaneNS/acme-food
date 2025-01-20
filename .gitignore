@@ -21,8 +21,8 @@
 /build
 
 # dev components
-./app/query
-./app/seed
+app/query
+app/seed
 
 # misc
 .DS_Store

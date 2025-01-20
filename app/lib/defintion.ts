@@ -55,7 +55,9 @@ export type DisplayCartType = {
     name: string,
     price: number,
     img_url: string,
-    amount: number
+    amount: number,
+    totalprice: number,
+    note_id: string | number
 }
 
 export type UserDisplayType = {
@@ -93,4 +95,32 @@ export type LoginFormState = {
         email: undefined;
         password: string;
     };
+} | undefined
+
+export const RegisterFormSchema = z.object({
+    username: z.string({ invalid_type_error: 'Username field cannot empty' }).trim(),
+    email: z.string({ invalid_type_error: 'Email field cannot empty'}).email({ message: 'Please enter valid email' }).trim(),
+    password: z.string({ invalid_type_error: 'Password field cannot empty'}),
+    password_confirmation: z.string({ invalid_type_error: 'Password field cannot empty'}),
+});
+
+export type RegisterFormState = {
+    errors: {
+        username?: string[] | undefined;
+        email?: string[] | undefined;
+        password?: string[] | undefined;
+        password_confirmation?: string[] | undefined;
+    };
+} | {
+    errors: {
+        password_confirmation?: string;
+        email?: undefined;
+    };
+} | { 
+    errors: { 
+        email: string; 
+        username?: undefined; 
+        password_confirmation?: undefined; 
+        password?: undefined; 
+    }; 
 } | undefined

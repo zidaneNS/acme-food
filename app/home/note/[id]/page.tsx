@@ -1,6 +1,7 @@
 import { getUser } from "@/app/lib/dal";
 import { fetchCartsByNote, fetchNoteById } from "@/app/lib/data";
-import CartNote from "@/app/ui/note/CartNote";
+import CartNote from "@/app/ui/home/note/CartNote";
+import clsx from "clsx";
 import { format } from "date-fns";
 import { redirect } from "next/navigation";
 
@@ -21,17 +22,19 @@ export default async function Page({ params }: { params: Promise<{id: string}>})
                 <p className="text-base md:text-lg py-2 px-6 border-b border-slate-400 w-full text-center">{format(noteData.createdat, "yyyy-MM-dd HH:mm:ss")}</p>
                 <div className="flex gap-x-3 w-full">
                     <p className="text-base md:text-lg py-2 px-6 text-center flex-grow border-b border-slate-400">IDR {noteData.totalprice}</p>
-                    <p className="text-base md:text-lg py-2 px-6 text-center flex-grow bg-slate-400 rounded-lg text-white">{noteData.status}</p>
+                    <p className={clsx(
+                        "text-base md:text-lg py-2 px-6 text-center flex-grow rounded-lg text-white",
+                        { "bg-green-500" : noteData.status === 'SUCCESS'},
+                        { "bg-slate-500" : noteData.status === 'PENDING'}
+                    )}>{noteData.status}</p>
                 </div>
             </div>
-            <div className="w-full h-fit max-h-full grid grid-cols-3 gap-y-2 rounded-lg overflow-y-auto place-items-center gap-x-2 px-3">
-            {cartData.length > 0 ? (
-                <>
-                    {cartData.map(cart => (
-                        <CartNote key={cart.id} cart={cart} />
-                    ))}
-                </>
-            ) : (
+            <div className="w-full h-fit max-h-full grid grid-cols-1 md:grid-cols-3 gap-y-3 rounded-lg overflow-y-auto place-items-center gap-x-2 px-3">
+            {cartData.length > 0 ? 
+                cartData.map(cart => (
+                    <CartNote key={cart.id} cart={cart} />
+                ))
+             : (
                 <p>No data to display</p>
             )}
             </div>

@@ -1,6 +1,7 @@
 import { getUser } from "@/app/lib/dal";
 import { fetchDisplayCart } from "@/app/lib/data"
 import Cart from "@/app/ui/home/cart/Cart"
+import SaveButton from "@/app/ui/home/cart/SaveButton";
 import { UserCircleIcon } from "@heroicons/react/24/outline"
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -10,6 +11,7 @@ export default async function Page() {
     if (!user) return redirect('/home?category=food-drink-dessert');
 
     const cartData = await fetchDisplayCart(user.id) || [];
+    
 
     return (
         <main className="flex h-full flex-col md:flex-row gap-x-6 gap-y-3 p-12">
@@ -41,10 +43,13 @@ export default async function Page() {
                                     amount={cart.amount}
                                     img_url={cart.img_url}
                                     id={cart.id}
+                                    totalprice={cart.totalprice}
+                                    note_id={cart.note_id}
                                 />
                             ))}
                         </div>
-                        <button className="bg-blue-800 w-1/3 rounded-xl text-white text-sm font-bold py-2 px-4 hover:bg-blue-700 transition duration-300">Save</button>
+                        <SaveButton noteId={cartData[0].note_id} />
+                        {/* <button className="bg-blue-800 w-1/3 rounded-xl text-white text-sm font-bold py-2 px-4 hover:bg-blue-700 transition duration-300">Save</button> */}
                     </div>
                 ) : (
                     <div className="h-full flex flex-col-reverse md:flex-col flex-grow items-center gap-y-3 pb-12 md:pb-0">Cart empty, order in home page...</div>

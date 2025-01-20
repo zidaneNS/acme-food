@@ -1,12 +1,13 @@
 // import { sql } from "@vercel/postgres";
 // import { UserType } from "../lib/defintion";
 // import { getUser } from "../lib/dal";
-import { fetchNoteById } from "../lib/data";
+import { fetchDisplayCart } from "../lib/data";
 
 export async function GET() {
     try {
 
-        const result = await fetchNoteById(1);
+        const result = await fetchDisplayCart(2);
+        // const data = result?.map(item => item.totalprice).reduce((prev, curr) => prev += curr, 0);
 
         return Response.json({ result });
     } catch (error) {

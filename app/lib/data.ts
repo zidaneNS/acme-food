@@ -81,10 +81,10 @@ export async function fetchUserByEmail(email: string): Promise<UserType | undefi
 
 export async function fetchDisplayCart(userId: number | string): Promise<DisplayCartType[] | undefined> {
     try {
-        const data = await sql<DisplayCartType>`SELECT carts.id, foods.name, foods.price, carts.amount, foods.img_url FROM carts JOIN foods ON carts.food_id = foods.id JOIN note_cart ON carts.id = note_cart.cart_id JOIN notes ON note_cart.note_id = notes.id WHERE carts.user_id = ${userId} AND notes.status = 'PENDING';`;
+        const data = await sql<DisplayCartType>`SELECT carts.id, foods.name, foods.price, carts.amount, foods.img_url, note_cart.note_id FROM carts JOIN foods ON carts.food_id = foods.id JOIN note_cart ON carts.id = note_cart.cart_id JOIN notes ON note_cart.note_id = notes.id WHERE carts.user_id = ${userId} AND notes.status = 'PENDING';`;
 
         const result: DisplayCartType[] = data.rows.map(item => {
-            return { ...item, totalPrice: item.price * item.amount }
+            return { ...item, totalprice: item.price * item.amount }
         })
         return result;
     } catch (err) {
@@ -107,7 +107,7 @@ export async function fetchCartsByNote(id: number | string): Promise<DisplayCart
         const data = await sql<DisplayCartType>`SELECT DISTINCT foods.name, foods.price, foods.img_url, carts.amount FROM note_cart JOIN carts ON note_cart.cart_id = carts.id JOIN foods ON carts.food_id = foods.id WHERE note_cart.note_id = ${id}`;
 
         const result = data.rows.map(item => {
-            return { ...item, totalPrice: item.price * item.amount }
+            return { ...item, totalprice: item.price * item.amount }
         })
         return result;
     } catch (err) {

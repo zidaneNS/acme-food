@@ -38,8 +38,8 @@ export default function LoginForm() {
                     <p className="text-sm font-bold text-red-500 py-2 px-4 bg-white/30 mt-3 rounded-lg">{state.errors.password}</p>
                 )}
             </div>
-            {/* <p>Not have any account?</p> */}
-            <Link href="/register" className="text-blue-800 text-sm font-bold hover:underline cursor-pointer">Sign Up Here!</Link>
+            <p>Not have any account?</p>
+            <Link href="/auth/register" className="text-blue-800 text-sm font-bold hover:underline cursor-pointer">Sign Up Here!</Link>
             {pending ? (
                 <LoadingButton />
             ) : (
